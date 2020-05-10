@@ -1,13 +1,5 @@
 ## Stock Market Analysis with R
 
-You can use the [editor on GitHub](https://github.com/AshiqZaman/hello-world/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-```markdown
-
-```
-
 ##Data upload: Here we will use a convenient data retrieval function (getSymbols) delivered by the quantmod package in order to retrieve some data. This function works, for instance, to retrieve stock data. The default source is Yahoo Finance. If you want to find out what stock has which symbol you should be able to search the internet to find a list of ticker symbols. The following shows how to use the function. But note that my experience is that sometimes the connection does not work and you may get an error message. In that case just retry a few seconds later and it may well work.
 
 ```{r}
