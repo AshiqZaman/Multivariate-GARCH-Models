@@ -49,3 +49,34 @@ ug_spec = ugarchspec()
 ```{r}
 ug_spec
 ```
+## When we are estimating volatility models we work with returns. There is a function that transforms the data to returns.
+```{r}
+rIBM <- dailyReturn(IBM)
+rBP <- dailyReturn(BP)
+rGOOG <- dailyReturn(GOOG)
+```
+
+## We put all data into a data frame for use in the multivariate model
+
+```{r}
+rX <- data.frame(rIBM, rBP, rGOOG)
+names(rX)[1] <- "rIBM"
+names(rX)[2] <- "rBP"
+names(rX)[3] <- "rGOOG"
+```
+
+## Univariate GARCH Model
+Here we are using the functionality provided by the rugarch package written by Alexios Galanos.
+
+## Model Specification
+The first thing you need to do is to ensure you know what type of GARCH model you want to estimate and then let R know about this. It is the ugarchspec( ) function which is used to let R know about the model type. There is in fact a default specification and the way to invoke this is as follows
+
+```{r}
+ug_spec = ugarchspec()
+```
+## ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
+
+```{r}
+ug_spec
+```
+
