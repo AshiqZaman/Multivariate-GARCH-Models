@@ -79,4 +79,25 @@ ug_spec = ugarchspec()
 ```{r}
 ug_spec
 ```
+*---------------------------------*
+*       GARCH Model Spec          *
+*---------------------------------*
+
+Conditional Variance Dynamics 	
+------------------------------------
+GARCH Model		: sGARCH(1,1)
+Variance Targeting	: FALSE 
+
+Conditional Mean Dynamics
+------------------------------------
+Mean Model		: ARFIMA(1,0,1)
+Include Mean		: TRUE 
+GARCH-in-Mean		: FALSE 
+
+Conditional Distribution
+------------------------------------
+Distribution	:  norm 
+Includes Skew	:  FALSE 
+Includes Shape	:  FALSE 
+Includes Lambda	:  FALSE 
 
