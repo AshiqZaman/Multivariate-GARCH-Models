@@ -4,18 +4,8 @@ You can use the [editor on GitHub](https://github.com/AshiqZaman/hello-world/edi
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
 ```markdown
----
-title: "R-GARCH-Practice"
-output: html_document
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ##Data upload: Here we will use a convenient data retrieval function (getSymbols) delivered by the quantmod package in order to retrieve some data. This function works, for instance, to retrieve stock data. The default source is Yahoo Finance. If you want to find out what stock has which symbol you should be able to search the internet to find a list of ticker symbols. The following shows how to use the function. But note that my experience is that sometimes the connection does not work and you may get an error message. In that case just retry a few seconds later and it may well work.
