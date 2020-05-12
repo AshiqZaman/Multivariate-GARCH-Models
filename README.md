@@ -1,4 +1,9 @@
 ## Stock Market Analysis with R
+## Multoivariate GARCH Model
+
+In line with Engle (2002), the DCC-GARCH can be presented as follows:
+
+![dcc equation](https://user-images.githubusercontent.com/47462688/81708341-0e437400-9469-11ea-8cc4-d1f824c04e59.PNG)
 
 ### Import Pilot data
 
