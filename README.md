@@ -36,31 +36,10 @@ The first thing you need to do is to ensure you know what type of GARCH model yo
 ug_spec = ugarchspec()
 ```
 ## ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
-
 ```{r}
 ug_spec
 ```
-*---------------------------------*
-*       GARCH Model Spec          *
-*---------------------------------*
 
-Conditional Variance Dynamics 	
-------------------------------------
-GARCH Model		: sGARCH(1,1)
-Variance Targeting	: FALSE 
-
-Conditional Mean Dynamics
-------------------------------------
-Mean Model		: ARFIMA(1,0,1)
-Include Mean		: TRUE 
-GARCH-in-Mean		: FALSE 
-
-Conditional Distribution
-------------------------------------
-Distribution	:  norm 
-Includes Skew	:  FALSE 
-Includes Shape	:  FALSE 
-Includes Lambda	:  FALSE 
 
 The key issues here are the spec for the Mean Model (here an ARMA(1,1) model) and the specification for the GARCH Model, here an sGARCH(1,1) which is basically a GARCH(1,1). To get details on all the possible specifications and how to change them it is best to consult the documentation of the rugarch package.
 
@@ -70,29 +49,6 @@ Let's say you want to change the mean model from an ARMA(1,1) to an ARMA(1,0), i
 ug_spec <- ugarchspec(mean.model=list(armaOrder=c(1,0)))
 ug_spec
 ```
-
-*---------------------------------*
-*       GARCH Model Spec          *
-*---------------------------------*
-
-Conditional Variance Dynamics 	
-------------------------------------
-GARCH Model		: sGARCH(1,1)
-Variance Targeting	: FALSE 
-
-Conditional Mean Dynamics
-------------------------------------
-Mean Model		: ARFIMA(1,0,0)
-Include Mean		: TRUE 
-GARCH-in-Mean		: FALSE 
-
-Conditional Distribution
-------------------------------------
-Distribution	:  norm 
-Includes Skew	:  FALSE 
-Includes Shape	:  FALSE 
-Includes Lambda	:  FALSE 
-
 
 ```{r}
 ewma_spec = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)), 
@@ -106,36 +62,6 @@ Now that we have specified a model to estimate we need to find the best paramete
 ```{r}
 ugfit = ugarchfit(spec = ug_spec, data = return)
 ```
-
-
-*---------------------------------*
-*          GARCH Model Fit        *
-*---------------------------------*
-
-Conditional Variance Dynamics 	
------------------------------------
-GARCH Model	: sGARCH(1,1)
-Mean Model	: ARFIMA(1,0,0)
-Distribution	: norm 
-
-Optimal Parameters
-------------------------------------
-        Estimate  Std. Error  t value Pr(>|t|)
-mu      0.000579    0.000107   5.4241 0.000000
-ar1    -0.007077    0.012101  -0.5848 0.558683
-omega   0.000004    0.000001   3.4817 0.000498
-alpha1  0.115563    0.007585  15.2351 0.000000
-beta1   0.864031    0.009772  88.4215 0.000000
-
-Robust Standard Errors:
-        Estimate  Std. Error  t value Pr(>|t|)
-mu      0.000579    0.000099  5.86608  0.00000
-ar1    -0.007077    0.011699 -0.60491  0.54524
-omega   0.000004    0.000005  0.73138  0.46455
-alpha1  0.115563    0.015091  7.65792  0.00000
-beta1   0.864031    0.034986 24.69635  0.00000
-
-LogLikelihood : 25001.2 
 
 ## Model Set up
 Here we assume that we are using the same univariate volatility model specification for each of the three assets.
@@ -174,6 +100,7 @@ We want to estimate the model as specified in spec1, using the data in rX. The o
 When you estimate a multivariate volatility model like the DCC model you are typically interested in the estimated covariance or correlation matrices. After all it is at the core of these models that you allow for time-variation in the correlation between the assets (there are also constant correlation models, but we do not discuss this here). Therefore we will now learn how we extract these.
 
 # Get the model based time varying covariance (arrays) and correlation matrices
+
 ```{r}
 cov1 = rcov(fit1)  # extracts the covariance matrix
 cor1 = rcor(fit1)  # extracts the correlation matrix
@@ -184,7 +111,8 @@ To understand the object we have at our hands here we can have a look at the ime
 ```{r}
 dim(cor1)
 ```
-## [1]    3    3 2850
+[1]    3    3 2850
+
 We get three outputs which tells us that we have a three dimensional object. The firts two dimensions have 3 elements each (think a 3×3 correlation matrix) and then there is a third dimension with 2850 elements. This tells us that cor1 stores 2850 (3×3) sorrelation matrices, one for each day of data.
 
 Let's have a look at the correlation matrix for the last day, day 2853;
@@ -192,10 +120,13 @@ Let's have a look at the correlation matrix for the last day, day 2853;
 ```{r}
 cor1[,,dim(cor1)[3]]
 ```
+```{r}
          STOXX50     DAX30     CAC40
 STOXX50 1.0000000 0.9754082 0.9863061
 DAX30   0.9754082 1.0000000 0.9571282
 CAC40   0.9863061 0.9571282 1.0000000
+```
+
 
 So let's say we want to plot the time-varying correlation between Google and BP, which is 0.275244 on that last day. In our matrix with returns rX BP is the second asset and Google the 3rd. So in any particular correlation matrix we want the element in row 2 and column 3.
 
