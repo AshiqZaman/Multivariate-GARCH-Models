@@ -1,4 +1,6 @@
-## Stock Market Analysis with R
+## Introduction: ARCH & GARCH Models
+
+An ARCH (autoregressive conditionally heteroscedastic) model is a model for the variance of a time series. ARCH models are used to describe a changing, possibly volatile variance. Although an ARCH model could possibly be used to describe a gradually increasing variance over time, most often it is used in situations in which there may be short periods of increased variation. (Gradually increasing variance connected to a gradually increasing mean level might be better handled by transforming the variable.)
 
 ### Multivariate GARCH Models
 
@@ -213,3 +215,8 @@ plot(as.xts(cor1[2,3,]),main="DAX30 & CAC40")
 ![dcc1](https://user-images.githubusercontent.com/47462688/81701775-5c08ae00-9462-11ea-9e91-de78bcdcd8d9.PNG)
 ![dcc2](https://user-images.githubusercontent.com/47462688/81701789-6165f880-9462-11ea-9578-d84f83efcc08.PNG)
 ![dcc3](https://user-images.githubusercontent.com/47462688/81701817-69259d00-9462-11ea-95d0-9f623500a975.PNG)
+
+
+
+### References
+PennState: Statistics Online Courses. 2020. ARCH/GARCH Models | STAT 510. [online] Available at: <https://online.stat.psu.edu/stat510/lesson/11/11.1>.
