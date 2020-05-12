@@ -1,6 +1,6 @@
 ## Stock Market Analysis with R
 
-## Import Pilot data
+### Import Pilot data
 ```{r}
 price<-read.csv("price.csv")
 head(price)
@@ -8,8 +8,7 @@ return<-read.csv("return.csv")
 head(return)
 ```
 
-## Convert into time series data
-
+### Convert into time series data
 
 ```{r}
 library(zoo)
@@ -20,22 +19,23 @@ head(return)
 dcc<-as.xts(return)
 ```
 
-## Install packages
+### Install packages
 ```{r}
 library(quantmod)
 library(rugarch)
 library(rmgarch)
 ```
-## Univariate GARCH Model
+### Univariate GARCH Model
 Here we are using the functionality provided by the rugarch package written by Alexios Galanos.
 
-## Model Specification
+### Model Specification
 The first thing you need to do is to ensure you know what type of GARCH model you want to estimate and then let R know about this. It is the ugarchspec( ) function which is used to let R know about the model type. There is in fact a default specification and the way to invoke this is as follows
 
 ```{r}
 ug_spec = ugarchspec()
 ```
-## ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
+### ug_spec is now a list which contains all the relevant model specifications. Let's look at them:
+
 ```{r}
 ug_spec
 ```
@@ -56,17 +56,17 @@ ewma_spec = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)),
         distribution.model="norm", fixed.pars=list(omega=0))
 ```
 
-## Model Estimation
+### Model Estimation
 Now that we have specified a model to estimate we need to find the best parameters, i.e. we need to estimate the model. This step is achieved by the ugarchfit function.
 
 ```{r}
 ugfit = ugarchfit(spec = ug_spec, data = return)
 ```
 
-## Model Set up
+### Model Set up
 Here we assume that we are using the same univariate volatility model specification for each of the three assets.
 
-# DCC (MVN)
+### DCC (MVN)
 
 ```{r}
 uspec.n = multispec(replicate(3, ugarchspec(mean.model = list(armaOrder = c(1,0)))))
@@ -88,7 +88,7 @@ spec1 = dccspec(uspec = uspec.n, dccOrder = c(1, 1), distribution = 'mvnorm')
 
 In this specification we have to state how the univariate volatilities are modeled (as per uspec.n) and how complex the dynamic structure of the correlation matrix is (here we are using the most standard dccOrder = c(1, 1) specification).
 
-## Model Estimation
+### Model Estimation
 Now we are in a position to estimate the model using the dccfit function.
 
 ```{r}
@@ -99,7 +99,7 @@ We want to estimate the model as specified in spec1, using the data in rX. The o
 
 When you estimate a multivariate volatility model like the DCC model you are typically interested in the estimated covariance or correlation matrices. After all it is at the core of these models that you allow for time-variation in the correlation between the assets (there are also constant correlation models, but we do not discuss this here). Therefore we will now learn how we extract these.
 
-# Get the model based time varying covariance (arrays) and correlation matrices
+### Get the model based time varying covariance (arrays) and correlation matrices
 
 ```{r}
 cov1 = rcov(fit1)  # extracts the covariance matrix
