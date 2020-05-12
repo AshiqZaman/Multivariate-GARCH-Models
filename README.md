@@ -1,6 +1,7 @@
 ## Stock Market Analysis with R
 
 ### Import Pilot data
+
 ```{r}
 price<-read.csv("price.csv")
 head(price)
@@ -20,15 +21,18 @@ dcc<-as.xts(return)
 ```
 
 ### Install packages
+
 ```{r}
 library(quantmod)
 library(rugarch)
 library(rmgarch)
 ```
 ### Univariate GARCH Model
+
 Here we are using the functionality provided by the rugarch package written by Alexios Galanos.
 
 ### Model Specification
+
 The first thing you need to do is to ensure you know what type of GARCH model you want to estimate and then let R know about this. It is the ugarchspec( ) function which is used to let R know about the model type. There is in fact a default specification and the way to invoke this is as follows
 
 ```{r}
@@ -57,6 +61,7 @@ ewma_spec = ugarchspec(variance.model=list(model="iGARCH", garchOrder=c(1,1)),
 ```
 
 ### Model Estimation
+
 Now that we have specified a model to estimate we need to find the best parameters, i.e. we need to estimate the model. This step is achieved by the ugarchfit function.
 
 ```{r}
