@@ -200,4 +200,6 @@ plot(as.xts(cor1[1,2,]),main="STOXX50 & DAX30")
 plot(as.xts(cor1[1,3,]),main="STOXX50 & CAC40")
 plot(as.xts(cor1[2,3,]),main="DAX30 & CAC40")
 ```
-
+![dcc1](https://user-images.githubusercontent.com/47462688/81701775-5c08ae00-9462-11ea-9e91-de78bcdcd8d9.PNG)
+![dcc2](https://user-images.githubusercontent.com/47462688/81701789-6165f880-9462-11ea-9578-d84f83efcc08.PNG)
+![dcc3](https://user-images.githubusercontent.com/47462688/81701817-69259d00-9462-11ea-95d0-9f623500a975.PNG)
