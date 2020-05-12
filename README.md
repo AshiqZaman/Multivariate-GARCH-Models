@@ -138,6 +138,8 @@ cor_BG <- as.xts(cor_BG)  # imposes the xts time series format - useful for plot
 And now we plot this.
 ```{r}
 plot(cor_BG)
+
+
 ```
 
 
