@@ -190,3 +190,14 @@ head(return)
 ## 2010-01-08  0.003488690  0.003027297  0.005040941
 ## 2010-01-11 -0.002524847  0.000478552 -0.000506910
 ```
+If you transformed cor_BG to be a xts series the plot function automatically picks up the date information. As you can see there is significant variation through time with the correaltion typically varying between 0.2 and 0.5.
+
+Let's plot all three correlations between the three assets.
+
+```{r}
+par(mfrow=c(3,1))  # this creates a frame with 3 windows to be filled by plots
+plot(as.xts(cor1[1,2,]),main="STOXX50 & DAX30")
+plot(as.xts(cor1[1,3,]),main="STOXX50 & CAC40")
+plot(as.xts(cor1[2,3,]),main="DAX30 & CAC40")
+```
+
