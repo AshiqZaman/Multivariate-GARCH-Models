@@ -83,7 +83,6 @@ Here we assume that we are using the same univariate volatility model specificat
 uspec.n = multispec(replicate(3, ugarchspec(mean.model = list(armaOrder = c(1,0)))))
 ```
 
-What does this command do? You will recognise that ugarchspec(mean.model = list(armaOrder = c(1,0))) specifies an AR(1)-GARCH(1,1) model. By using replicate(3, ugarchspec...) we replicate this model 3 times (as we have three assets, IBM, Google/Alphabet and BP).
 
 We now estimate these univariate GARCH models using the multifit command.
 
